@@ -15,8 +15,6 @@ services:
       context: ./Backend
     container_name: jobseeking-backend
     restart: always
-    env_file:
-      - ./Backend/.env
     environment:
       - MONGO_URI=mongodb://mongo:27017/Job_Seeking_Web
       - FRONTEND_URL=http://localhost:5173
