@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: jobseeking-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./Job-Seeking-Website-/Backend
+    container_name: jobseeking-backend
+    restart: always
+    env_file:
+      - ./Job-Seeking-Website-/Backend/.env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/Job_Seeking_Web
+      - CLOUDNIARY_CLIENT_NAME=${CLOUDNIARY_CLIENT_NAME}
+      - CLOUDNIARY_CLIENT_API=${CLOUDNIARY_CLIENT_API}
+      - CLOUDNIARY_CLIENT_SECRET=${CLOUDNIARY_CLIENT_SECRET}
+      - FRONTEND_URL=http://localhost:5173
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./Job-Seeking-Website-/frontend
+    container_name: jobseeking-frontend
+    restart: always
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    command: ["npm", "run", "dev", "--", "--host"]
+
+volumes:
+  mongo_data:

@@ -1,24 +1,13 @@
 # Node modules
 node_modules/
 
-# Build output
-dist/
-dist-ssr/
-
 # Logs
 *.log
+
+# Env files
+.env
 
 # Editor directories and files
 .vscode/
 .idea/
 .DS_Store
-
-# Misc
-*.local
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
