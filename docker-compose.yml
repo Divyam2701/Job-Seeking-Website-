@@ -19,9 +19,6 @@ services:
       - ./Job-Seeking-Website-/Backend/.env
     environment:
       - MONGO_URI=mongodb://mongo:27017/Job_Seeking_Web
-      - CLOUDNIARY_CLIENT_NAME=${CLOUDNIARY_CLIENT_NAME}
-      - CLOUDNIARY_CLIENT_API=${CLOUDNIARY_CLIENT_API}
-      - CLOUDNIARY_CLIENT_SECRET=${CLOUDNIARY_CLIENT_SECRET}
       - FRONTEND_URL=http://localhost:5173
       - PORT=3000
     ports:
